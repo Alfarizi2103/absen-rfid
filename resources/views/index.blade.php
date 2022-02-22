@@ -8,8 +8,8 @@ $jam     = date('H:i:s');
   <?php include "header.php"; ?>
      <title>Absensi - Dashboard</title>
     <!-- Membaca RFID -->
-    <script type="text/javascript" src="jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{asset('src/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('src/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         setInterval(function () {
