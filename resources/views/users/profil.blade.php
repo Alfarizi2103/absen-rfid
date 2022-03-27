@@ -51,6 +51,12 @@ Profil - {{ config('app.name') }}
                                 @error('nama') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"><label for="jk" class="col-form-label">jk</label></div>
+                            <div class="col-sm-10">
+                                <input disabled type="text" class="form-control" id="jk" name="jk" value="{{ Auth::user()->jk }}">
+                            </div>
+                        </div>
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary btn-block">

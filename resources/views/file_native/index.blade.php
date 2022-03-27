@@ -5,15 +5,16 @@ $jam     = date('H:i:s');
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <?php include "header.php"; ?>
+  @include('file_native.src.header')
      <title>Absensi - Dashboard</title>
     <!-- Membaca RFID -->
-    <script type="text/javascript" src="{{asset('src/jquery/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('src/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{asset('aset/jquery/jquery.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
+    <script type="text/javascript" src="{{asset('aset/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         setInterval(function () {
-          $("#cekkartu").load("bacakartu.php");
+          $("#cekkartu").load("/bacakartu");
         }, 1000);
         $('#logoutModal').modal('show');
         
@@ -22,7 +23,7 @@ $jam     = date('H:i:s');
       <script type="text/javascript">
       $(document).ready(function () {
         setInterval(function () {
-          $("#waktu").load("waktu.php");
+          $("#waktu").load("/waktu");
         }, 1000);
         
       });
@@ -91,21 +92,21 @@ $jam     = date('H:i:s');
 
 
    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('aset/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('aset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{asset('aset/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="{{asset('aset/js/sb-admin-2.min.js')}}"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('aset/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('aset/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="{{asset('aset/js/demo/datatables-demo.js')}}"></script>
 
     <!-- <script type="text/javascript">
 			$("bacakartu.php").on('load', function(){

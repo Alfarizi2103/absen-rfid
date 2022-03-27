@@ -66,7 +66,7 @@
                 </div>
                 <!-- Navbar items -->
                 <ul class="navbar-nav ml-auto">
-                    @if (auth()->user()->role->role == "Admin")
+                    @if (auth()->user()->role->role == "Admin" || auth()->user()->role->role == "Kepegawaian")
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link nav-link-icon">
                                 <i class="ni ni-circle-08"></i>
@@ -75,7 +75,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        @if (auth()->user()->role->role == "Admin")
+                        @if (auth()->user()->role->role == "Admin" || auth()->user()->role->role == "Kepegawaian")
                             <a class="nav-link nav-link-icon" href="{{ route('kehadiran.index') }}">
                         @else
                             <a class="nav-link nav-link-icon" href="{{ route('daftar-hadir') }}">

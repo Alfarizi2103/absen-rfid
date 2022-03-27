@@ -1,10 +1,15 @@
+@include('file_native.src.header')
 <?php 
-	include "koneksi.php";
-  include "header.php";
+  use Illuminate\Support\Facades\Hash;
+  use Illuminate\Support\Facades\DB;
+  use Illuminate\Http\Request;
+  
 	//baca tabel status untuk mode absensi
-	$sql = mysqli_query($konek, "select * from status");
-	$data = mysqli_fetch_array($sql);
-	$mode_absen = $data['mode'];
+	$sql = DB::select('select * from status');
+  foreach ($sql as $data)
+  {
+    $mode_absen = $data->mode;
+  }
 
 	//uji mode absen
   date_default_timezone_set('Asia/jakarta') ;
@@ -24,7 +29,7 @@
 		$mode = "Pulang";
 
 	//baca tabel tmprfid
-	@$baca_kartu = mysqli_query($konek, "select * from tmprfid");
+	@$baca_kartu = DB::select('select * from tmprfid');
 	@$data_kartu = mysqli_fetch_array($baca_kartu);
 	@$nokartu    = $data_kartu['nokartu'];
   @$suhu    = $data_kartu['suhu'];
@@ -108,41 +113,7 @@
                                 <th style="text-align: center">Suhu</th>
                             </tr>
                             </tfoot>
-                            <tbody>
-                                <?php
-                                    include "koneksi.php";
-
-                                    //baca tabel absensi dan relasikan dengan tabel karyawan berdasarkan nomor kartu RFID untuk tanggal hari ini
-
-                                    //baca tanggal saat ini
-                                    date_default_timezone_set('Asia/Jakarta');
-                                    $tanggal = date('Y-m-d');
-
-                                    //filter absensi berdasarkan tanggal saat ini
-                                    if($mode_absen == 1)
-                                      {
-                                        $sql = mysqli_query($konek, "select b.nama, b.id, a.tanggal, a.jam_masuk, a.jam_pulang, a.suhu from absensi a, karyawan b where a.nokartu=b.nokartu and a.tanggal='$tanggal' ORDER BY  a.jam_masuk DESC, a.jam_pulang Desc");
-                                      }else if($mode_absen == 2)
-                                      {
-                                        $sql = mysqli_query($konek, "select b.nama, b.id, a.tanggal, a.jam_masuk,  a.jam_pulang, a.suhu from absensi a, karyawan b where a.nokartu=b.nokartu and a.tanggal='$tanggal' ORDER BY  a.jam_pulang Desc, a.jam_masuk DESC");
-                                      }
-                                   
-                                    $no = 0;
-                                    while($data = mysqli_fetch_array($sql))
-                                    {
-                                        $no++;
-                                ?>
-                                <tr>
-                                    <td> <?php echo $no; ?> </td>
-                                    <td> <?php echo $data['nama']; ?> </td>
-                                    <td> <?php echo $data['jam_masuk']; ?> </td>
-                                    <td> <?php echo $data['jam_pulang']; ?> </td>
-                                    <td> <?php echo $data['suhu']; ?> </td>
-                                    
-                                    
-                                </tr>
-                                <?php } ?>
-                            </tbody>
+                           
                         </table>
                     </div>
                 </div>

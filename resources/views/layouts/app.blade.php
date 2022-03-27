@@ -91,7 +91,7 @@
                 </div>
                 <!-- Navigation -->
                 <ul class="navbar-nav">
-                    @if (auth()->user()->role->role == "Admin")
+                    @if (auth()->user()->role->role == "Admin" || auth()->user()->role->role == "Kepegawaian")
                         @if (Request::segment(1) == 'kehadiran')
                             <li class="nav-item active">
                             <a class="nav-link active" href="{{ route('kehadiran.index') }}">

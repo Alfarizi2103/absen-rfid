@@ -1,19 +1,33 @@
+@include('file_native.src.header')
 <?php 
+    use Illuminate\Support\Facades\Hash;
+    use Illuminate\Support\Facades\DB;
+    use Illuminate\Http\Request;
+
     date_default_timezone_set('Asia/Jakarta') ;
     $tanggal = date('Y-m-d');
     $jam     = date('H:i:s');
 
-    include "koneksi.php";
 
  //membaca Jumlah Karyawan Yang Hadir
-  $karyawan = mysqli_query($konek, "SELECT COUNT(*) AS `karyawanHadir` FROM `absensi`where tanggal='$tanggal'");
-  $row = mysqli_fetch_array($karyawan);
-  $karyawanHadir = $row['karyawanHadir'];
-  
-  $jumlahKaryawan = mysqli_query($konek, "SELECT COUNT(*) AS `totalKaryawan` FROM `karyawan`");
-  $sql = mysqli_fetch_array($jumlahKaryawan);
-  $totalKaryawan = $sql['totalKaryawan'];
-  $persentase = $karyawanHadir/$totalKaryawan*100
+    $karyawan=DB::table('karyawanHadir')->select(DB::raw('COUNT(*) as karyawanHadir'))
+        ->from('absensi')->where('tanggal','=','$tanggal')
+        ->get();
+        foreach ($karyawan as $row )
+          {
+            $karyawanHadir = $row->karyawanHadir;
+          }
+
+      
+    $jumlahKaryawan=DB::table('karyawan')->select(DB::raw('COUNT(*) as totalKaryawan'))
+          ->from('karyawan')
+          ->get();
+          foreach ($jumlahKaryawan as $sql )
+          {
+            $totalKaryawan = $sql->totalKaryawan;
+          }
+
+    $persentase = $karyawanHadir/$totalKaryawan*100
 
 //  echo $karyawanHadir;
 ?>

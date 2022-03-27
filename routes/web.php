@@ -18,6 +18,17 @@ use App\Http\Controllers\PresentsController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/', function () {
+//     return view('file_native.index');
+// });
+// Route::get('/bacakartu', function () {
+//     return view('file_native.bacakartu');
+// });
+// Route::get('/waktu', function () {
+//     return view('file_native.waktu');
+// });
+Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
+
 Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
 Route::post('/login', 'App\Http\Controllers\AuthController@login')->name('login')->middleware('guest');
 
@@ -31,7 +42,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function(){
     Route::get('/profil', 'App\Http\Controllers\UsersController@profil')->name('profil');
     Route::patch('/update-profil/{user}', 'App\Http\Controllers\UsersController@updateProfil')->name('update-profil');
 
-    Route::group(['roles' => 'Admin'], function(){
+    Route::group(['middleware' => ['auth','roles:admin,kepegawaian']], function(){
         Route::get('/users/cari', 'App\Http\Controllers\UsersController@search')->name('users.search');
         Route::patch('/users/password/{user}', 'App\Http\Controllers\UsersController@password')->name('users.password');
         Route::resource('/users', 'App\Http\Controllers\UsersController');
@@ -52,7 +63,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function(){
         Route::get('/daftar-hadir/cari', 'App\Http\Controllers\PresentsController@cariDaftarHadir')->name('daftar-hadir.cari');
     });
 
-    Route::group(['middleware' => ['auth','roles:admin,karyawan']], function() {
+    Route::group(['middleware' => ['auth','roles:admin,pegawai,kepegawaian']], function() {
 
         Route::patch('/absen/{kehadiran}', 'App\Http\Controllers\PresentsController@checkOut')->name('kehadiran.check-out');
         Route::post('/absen', 'App\Http\Controllers\PresentsController@checkIn')->name('kehadiran.check-in');

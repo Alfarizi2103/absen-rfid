@@ -84,6 +84,10 @@ Detail User - {{ config('app.name') }}
         <div class="card shadow h-100">
             <div class="card-header">
                 <h5 class="m-0 pt-1 font-weight-bold float-left">Kehadiran</h5>
+                <form class="float-right" action="{{ route('kehadiran.excel-users') }}" method="get">
+                    <input type="hidden" name="tanggal" value="{{ request('bulan', date('Y-m-d')) }}">
+                    <button class="btn btn-sm btn-primary" type="submit" title="Download"><i class="fas fa-download"></i></button>
+                </form>
             </div>
             <div class="card-body">
                 <form action="{{ route('daftar-hadir.cari') }}" class="mb-3" method="get">
@@ -125,17 +129,6 @@ Detail User - {{ config('app.name') }}
                                         @endif
                                         @if($present->jam_keluar)
                                             <td>{{ date('H:i:s', strtotime($present->jam_keluar)) }}</td>
-                                            <td>
-                                                @if (strtotime($present->jam_keluar) <= strtotime($present->jam_masuk))
-                                                    {{ 21 - (\Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse($present->jam_keluar))) }}
-                                                @else 
-                                                    @if (strtotime($present->jam_keluar) >= strtotime('19:00:00'))
-                                                        {{ (\Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse($present->jam_keluar))) - 3 }}
-                                                    @else
-                                                        {{ (\Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse($present->jam_keluar))) - 1 }}
-                                                    @endif
-                                                @endif
-                                            </td>
                                         @else
                                             <td>-</td>
                                             <td>-</td>

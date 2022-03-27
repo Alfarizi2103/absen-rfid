@@ -49,12 +49,15 @@ class UsersController extends Controller
             'email'   => ['required','unique:users'],
             'role'  => ['required', 'numeric'],
             'jk'  => ['required', 'string'],
-            'password' => ['required', 'min:6'],
+            'password' => 'required|min:6',
             'foto'  => ['image', 'mimes:jpeg,png,gif', 'max:2048']
         ]);
-        // $password = Str::random(10);
         $user['role_id'] = $request->role;
-        // $user['password'] = Hash::make($password);
+        $password = request('password'); // get the value of password field
+        // $user = Hash::make($password);
+        $user['password'] = Hash::make($password);
+
+       
         if ($request->file('foto')) {
             $user['foto'] = $request->file('foto')->store('foto-profil');
         } else {
@@ -129,7 +132,7 @@ class UsersController extends Controller
             'nik'  => ['required',Rule::unique('users','nik')->ignore($user)],
             'nama'  => ['required', 'max:32', 'string'],
             'email'   => ['required',Rule::unique('users','email')->ignore($user)],
-            'jk'  => ['required', 'max:32', 'string'],
+            'jk'  => [ 'max:32', 'string'],
             'role'  => ['required', 'numeric'],
             'foto'  => ['image', 'mimes:jpeg,png,gif', 'max:2048']
         ]);
@@ -217,6 +220,7 @@ class UsersController extends Controller
     public function updateProfil(Request $request, User $user)
     {
         $request->validate([
+            
             'nama' => ['required', 'max:32'],
             'foto' => ['image', 'mimes:jpeg,png,gif', 'max:2048']
         ]);

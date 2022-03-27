@@ -58,7 +58,7 @@ Ubah User - {{ config('app.name') }}
                         <div class="form-group row">
                             <div class="col-sm-2"><label for="role" class="float-right col-form-label ">Sebagai</label></div>
                             <div class="col-sm-10">
-                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
+                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" value="{{ $user->role }}">
                                     <option value="">Pilih</option>
                                     <option value="1" {{ old('role',$user->role_id) == 1 ? 'selected' : '' }}>Admin</option>
                                     <option value="2" {{ old('role',$user->role_id) == 2 ? 'selected' : '' }}>Pegawai</option>
@@ -69,7 +69,7 @@ Ubah User - {{ config('app.name') }}
                         </div><div class="form-group row">
                             <div class="col-sm-2"><label for="jk" class="float-right col-form-label ">Sebagai</label></div>
                             <div class="col-sm-10">
-                                <select class="form-control @error('jk') is-invalid @enderror" name="jk" id="jk">
+                                <select class="form-control @error('jk') is-invalid @enderror" name="jk" id="jk" value="{{ $user->jk }}">
                                     <option value="">Pilih</option>
                                     <option value="Pria">Pria</option>
                                     <option value="Perempuan">Perempuan</option>

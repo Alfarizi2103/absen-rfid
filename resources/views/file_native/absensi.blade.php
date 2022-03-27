@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-	<?php include "header.php"; ?>
+@include('file_native.src.header')
     <title>Absensi</title>
 </head>
 
@@ -19,7 +19,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include "sidebar.php"; ?>
+        @include('file_native.src.sidebar')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -29,7 +29,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include "topbar.php"; ?>
+                <@include('file_native.src.topbar')
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -67,7 +67,7 @@
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                            include "koneksi.php";
+                                            // include "koneksi.php";
 
                                             //baca tabel absensi dan relasikan dengan tabel karyawan berdasarkan nomor kartu RFID untuk tanggal hari ini
 
@@ -113,7 +113,8 @@
             <!-- Footer -->
  
 
-    <?php include "footer.php"; ?>
+            <@include('file_native.src.footer')
+
     
 
 </body>

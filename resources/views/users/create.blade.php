@@ -73,12 +73,13 @@ Tambah User - {{ config('app.name') }}
                                 @error('jk') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
+                        
                         <div class="form-group row">
-                            <div class="col-sm-2"><label for="password" class="float-left col-form-label">password</label></div>
+                        <div class="col-sm-2"><label for="password" class="float-left col-form-label">Password</label></div>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}">
-                                @error('password') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                            </div>
+                            <input type="password" class="form-control  @error('password') is-invalid @enderror" id="password" name="password">
+                        </div>
+                            @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-10">
