@@ -16,7 +16,7 @@ use App\Http\Controllers\PresentsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('tes');
 });
 // Route::get('/', function () {
 //     return view('file_native.index');
@@ -27,6 +27,8 @@ Route::get('/', function () {
 // Route::get('/waktu', function () {
 //     return view('file_native.waktu');
 // });
+Route::get('/', 'App\Http\Controllers\WelcomeController@index');
+
 Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
 
 Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
