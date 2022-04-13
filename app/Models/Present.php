@@ -12,7 +12,7 @@ class Present extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'tanggal', 'keterangan', 'jam_masuk', 'jam_keluar'
+        'no_kartu','user_id', 'tanggal', 'keterangan', 'jam_masuk', 'jam_keluar'
     ];
 
     /**

@@ -138,7 +138,7 @@ class PresentsController extends Controller
         }
         $data = $request->validate([
             'keterangan'    => ['required'],
-            'user_id'    => ['required']
+            'user_id'    => ['required'],
         ]);
         $data['tanggal'] = date('Y-m-d');
         if ($request->keterangan == 'Masuk') {

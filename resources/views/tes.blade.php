@@ -49,6 +49,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>no_kartu</th>
                                 <th>email</th>
                                 <th>Nama</th>
                                 <th>Keterangan</th>
@@ -66,6 +67,8 @@
                                 @foreach ($presents as $present)
                                     <tr>
                                         <th>{{ $rank++ }}</th>
+                                        <td>{{ $present->user->no_kartu }}</td>
+
                                         <td><a href="{{ route('users.show',$present->user) }}">{{ $present->user->email }}</a></td>
                                         <td>{{ $present->user->nama }}</td>
                                         <td>{{ $present->keterangan }}</td>
