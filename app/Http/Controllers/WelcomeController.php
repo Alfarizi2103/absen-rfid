@@ -11,5 +11,5 @@ class WelcomeController extends Controller
         $presents = Present::whereTanggal(date('Y-m-d'))->orderBy('jam_masuk')->paginate(6);
         $rank = $presents->firstItem();
         return view('tes', compact('presents','rank'));
-}
+    }
 }

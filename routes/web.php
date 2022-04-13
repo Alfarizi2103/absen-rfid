@@ -53,6 +53,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function(){
         Route::get('/kehadiran/cari', 'App\Http\Controllers\PresentsController@search')->name('kehadiran.search');
         Route::get('/kehadiran/{user}/cari', 'App\Http\Controllers\PresentsController@cari')->name('kehadiran.cari');
         Route::get('/kehadiran/excel-users', 'App\Http\Controllers\PresentsController@excelUsers')->name('kehadiran.excel-users');
+        Route::get('/kehadiran/excel-users-month', 'App\Http\Controllers\PresentsController@excelUsersMonth')->name('kehadiran.excel-users-month');
         Route::get('/kehadiran/{user}/excel-user', 'App\Http\Controllers\PresentsController@excelUser')->name('kehadiran.excel-user');
         Route::post('/kehadiran/ubah', 'App\Http\Controllers\PresentsController@ubah')->name('ajax.get.kehadiran');
         Route::patch('/kehadiran/{kehadiran}', 'App\Http\Controllers\PresentsController@update')->name('kehadiran.update');

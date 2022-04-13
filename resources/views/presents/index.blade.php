@@ -86,8 +86,14 @@ Kehadiran - {{ config('app.name') }}
                 <h5 class="m-0 pt-1 font-weight-bold float-left">Kehadiran</h5>
                 <form class="float-right" action="{{ route('kehadiran.excel-users') }}" method="get">
                     <input type="hidden" name="tanggal" value="{{ request('tanggal', date('Y-m-d')) }}">
-                    <button class="btn btn-sm btn-primary" type="submit" title="Download"><i class="fas fa-download"></i></button>
+                    <button class="btn btn-sm btn-primary" type="submit" title="Download"><i class="fas fa-download"></i>Harian</button>
                 </form>
+                <form class="float-right d-inline-block" action="{{ route('kehadiran.excel-users-month') }}" method="get">
+                            <input type="hidden" name="bulan" value="{{ request('bulan',date('Y-m')) }}">
+                            <button title="Download" type="submit" class="btn btn-sm btn-success">
+                                <i class="fas fa-download"></i> Bulanan
+                            </button>
+                        </form>
             </div>
             <div class="card-body">
                 <div class="row">

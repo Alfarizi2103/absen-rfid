@@ -8,6 +8,7 @@ use App\Models\Present;
 use App\Models\User;
 use App\Exports\PresentExport;
 use App\Exports\UsersPresentExport;
+use App\Exports\UsersPresentExportMonth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class PresentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         $presents = Present::whereTanggal(date('Y-m-d'))->orderBy('jam_masuk')->paginate(6);
         $masuk = Present::whereTanggal(date('Y-m-d'))->whereKeterangan('masuk')->count();
@@ -26,6 +27,7 @@ class PresentsController extends Controller
         $cuti = Present::whereTanggal(date('Y-m-d'))->whereKeterangan('cuti')->count();
         $alpha = Present::whereTanggal(date('Y-m-d'))->whereKeterangan('alpha')->count();
         $rank = $presents->firstItem();
+        
         return view('presents.index', compact('presents','rank','masuk','telat','cuti','alpha'));
     }
 
@@ -207,6 +209,11 @@ class PresentsController extends Controller
     public function excelUser(Request $request, User $user)
     {
         return Excel::download(new PresentExport($user->id, $request->bulan), 'kehadiran-'.$user->email.'-'.$request->bulan.'.xlsx');
+    }
+
+    public function excelUsersMonth(Request $request)
+    {
+        return Excel::download(new UsersPresentExportMonth($request->bulan), 'kehadiran-'.$request->bulan.'.xlsx');
     }
 
     public function excelUsers(Request $request)
