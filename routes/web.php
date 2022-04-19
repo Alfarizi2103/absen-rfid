@@ -49,8 +49,9 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function(){
         Route::patch('/users/password/{user}', 'App\Http\Controllers\UsersController@password')->name('users.password');
         Route::resource('/users', 'App\Http\Controllers\UsersController');
 
-        Route::get('/kehadiran', 'App\Http\Controllers\PresentsController@index')->name('kehadiran.index');
+        Route::get('/kehadiran', 'App\Http\Controllers\PresentsController@kehadiran')->name('kehadiran.index');
         Route::get('/kehadiran/cari', 'App\Http\Controllers\PresentsController@search')->name('kehadiran.search');
+        Route::get('/kehadiran/cari-all', 'App\Http\Controllers\PresentsController@searchmonth')->name('kehadiran.search-month');
         Route::get('/kehadiran/{user}/cari', 'App\Http\Controllers\PresentsController@cari')->name('kehadiran.cari');
         Route::get('/kehadiran/excel-users', 'App\Http\Controllers\PresentsController@excelUsers')->name('kehadiran.excel-users');
         Route::get('/kehadiran/excel-users-month', 'App\Http\Controllers\PresentsController@excelUsersMonth')->name('kehadiran.excel-users-month');
@@ -60,7 +61,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function(){
         Route::post('/kehadiran', 'App\Http\Controllers\PresentsController@store')->name('kehadiran.store');
     });
 
-    Route::group(['roles' => 'Pegawai'], function(){
+    Route::group(['auth','roles:admin,pegawai'], function(){
 
         Route::get('/daftar-hadir', 'App\Http\Controllers\PresentsController@show')->name('daftar-hadir');
         Route::get('/daftar-hadir/cari', 'App\Http\Controllers\PresentsController@cariDaftarHadir')->name('daftar-hadir.cari');

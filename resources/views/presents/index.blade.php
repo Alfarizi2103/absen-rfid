@@ -93,12 +93,23 @@ Kehadiran - {{ config('app.name') }}
                             <button title="Download" type="submit" class="btn btn-sm btn-success">
                                 <i class="fas fa-download"></i> Bulanan
                             </button>
-                        </form>
+                </form>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6 mb-1">
-                        <form action="{{ route('kehadiran.search') }}" method="get">
+                        <form action="{{ route('kehadiran.search-month') }}" class="mb-3" method="get">
+                            <div class="form-group row mb-3 ">
+                                <label for="bulan" class="col-form-label col-sm-2">Bulan</label>
+                                <div class="input-group col-sm-10">
+                                    <input type="month" class="form-control" name="bulan" id="bulan" value="{{ request('bulan',date('Y-m')) }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="submit">Cari</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- <form action="{{ route('kehadiran.search') }}" method="get">
                             <div class="form-group row">
                                 <label for="tanggal" class="col-form-label col-sm-3">Tanggal</label>
                                 <div class="input-group col-sm-9">
@@ -106,27 +117,25 @@ Kehadiran - {{ config('app.name') }}
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" type="submit">Cari</button>
                                     </div>
+                                    
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
-                    <div class="col-lg-6">
-                        <div class="float-right">
-                            {{ $presents->links() }}
-                        </div>
-                    </div>
+                   
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>no_kartu</th>
-                                <th>email</th>
                                 <th>Nama</th>
+                                <th>No Kartu</th>
+                                <th>email</th>
                                 <th>Keterangan</th>
                                 <th>Jam Masuk</th>
                                 <th>Jam Keluar</th>
+                                <th>Tanggal</th>
                                 <th>Total Jam</th>
                             </tr>
                         </thead>
@@ -139,9 +148,9 @@ Kehadiran - {{ config('app.name') }}
                                 @foreach ($presents as $present)
                                     <tr>
                                         <th>{{ $rank++ }}</th>
+                                        <td>{{ $present->user->nama }}</td>
                                         <td>{{ $present->user->no_kartu }}</td>
                                         <td><a href="{{ route('users.show',$present->user) }}">{{ $present->user->email }}</a></td>
-                                        <td>{{ $present->user->nama }}</td>
                                         <td>{{ $present->keterangan }}</td>
                                         @if ($present->jam_masuk)
                                             <td>{{ date('H:i:s', strtotime($present->jam_masuk)) }}</td>
@@ -153,13 +162,16 @@ Kehadiran - {{ config('app.name') }}
                                         
                                         @else
                                             <td>-</td>
-                                            <td>-</td>
                                         @endif
+                                        <td>{{ date('d/m/Y', strtotime($present->tanggal)) }}</td>
                                     </tr>
                                 @endforeach 
                             @endif
                         </tbody>
-                    </table>                    
+                    </table>
+                    <div class="float-right">
+                        {{ $presents->links() }}
+                    </div>                  
                 </div>
             </div>
         </div>

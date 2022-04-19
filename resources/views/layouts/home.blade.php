@@ -38,31 +38,42 @@
 <body class="bg-default">
     
     <div class="main-content">
-       
+        <div class="header bg-blue py-3">
+        @if (Route::has('login'))
+            <div class="header-body text-right mr-4">
+                @auth
+                    <a href="{{ url('/home') }}" class="btn btn-primary">Home</a>
+                @else
+                    <a href="{{ route('auth.index') }}" class="btn btn-primary">Login</a>
+                @endauth
+            </div>
+        @endif
+        </div>
         <!-- End Navbar -->
 
         <!-- Header -->
-        <div class="header bg-gradient-primary py-7 py-lg-8">
+        <div class="header bg-blue py-7 py-lg-8">
+            
             <div class="container">
-                <div class="header-body text-center mb-7">
+                <div class="header-body text-center ">
                     <div class="row justify-content-center">
                         <div class="col-lg-5 col-md-6">
                             <h1 class="text-white">Selamat Datang!</h1>
-                            <p class="text-lead text-light">Sistem Absensi Terpadu</p>
+                            <h1 class="text-white">Daftar Kehadiran Ini!</h1>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="separator separator-bottom separator-skew zindex-100">
-                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-                </svg>
-            </div>
+                <div class="separator separator-bottom separator-skew zindex-100">
+                    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+                    </svg>
+                </div>
         </div>
         <!-- Page content -->
-                        <div class="card-body px-lg-5 py-lg-5">
-                            @if (session('success'))
+                        
+                            <!-- @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -77,9 +88,9 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            @endif
+                            @endif -->
                             @yield('content')
-                        </div>
+                        
                     
         <footer class="py-5">
             <div class="container">
