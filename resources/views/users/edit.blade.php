@@ -66,17 +66,19 @@ Ubah User - {{ config('app.name') }}
                                 </select>
                                 @error('role') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
-                        </div><div class="form-group row">
-                            <div class="col-sm-2"><label for="jk" class="float-right col-form-label ">Sebagai</label></div>
+</div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"><label for="jk" class="float-right col-form-label ">Gender</label></div>
                             <div class="col-sm-10">
                                 <select class="form-control @error('jk') is-invalid @enderror" name="jk" id="jk" value="{{ $user->jk }}">
                                     <option value="">Pilih</option>
-                                    <option value="Pria">Pria</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Pria"  {{ old('jk',$user->jk) == 'Pria' ? 'selected' : '' }} >Pria</option>
+                                    <option value="Perempuan" {{ old('jk',$user->jk) == 'Perempuan' ? 'selected' : '' }} >Perempuan</option>
                                 </select>
                                 @error('jk') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
+
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-success btn-block">
