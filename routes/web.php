@@ -28,6 +28,7 @@ Route::get('/', function () {
 //     return view('file_native.waktu');
 // });
 Route::get('/', 'App\Http\Controllers\WelcomeController@index');
+Route::get('/get-data', 'App\Http\Controllers\WelcomeController@getData');
 
 Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
 

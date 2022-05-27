@@ -35,7 +35,7 @@
 
 </head>
 
-<body class="bg-default">
+<body class="bg-default" onload="getData()">
     
     <div class="main-content">
         <div class="header bg-blue py-3">
@@ -116,6 +116,27 @@
                 application: "argon-dashboard-free"
             });
         
+    </script>
+    <script>
+        function getData(){
+            $.get('/get-data', function (data) {
+            setTimeout(getData, 500);
+            var temple = `
+                    ${data.map((data, i) => `
+                         <tr>
+                            <th>${i+1}</th>
+                            <td>${data.user.nama}</td>
+                            <td>${data.user.no_kartu}</td>
+                            <td>${data.user.email}</a></td>
+                            <td>${data.keterangan}</td>
+                            <td>${data.jam_masuk}</td>
+                            <td>${data.jam_keluar}</td>
+                        </tr>
+                    `).join('')}
+                    `
+                    $(".data").html(temple); 
+        });
+        }
     </script>
 
 </body>

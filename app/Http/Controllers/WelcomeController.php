@@ -12,4 +12,8 @@ class WelcomeController extends Controller
         $rank = $presents->firstItem();
         return view('tes', compact('presents','rank'));
     }
+    public function getData(){
+        $presents = Present::with('user')->whereTanggal(date('Y-m-d'))->orderBy('jam_masuk')->get();
+        return response()->json($presents);
+    }
 }

@@ -49,8 +49,8 @@
                                 <th>Total Jam</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @if (!$presents->count())
+                        <tbody class="data">
+                            {{-- @if (!$presents->count())
                                 <tr>
                                     <td colspan="7" class="text-center">Tidak ada data yang tersedia</td>
                                 </tr>
@@ -76,7 +76,7 @@
                                         @endif
                                     </tr>
                                 @endforeach 
-                            @endif
+                            @endif --}}
                         </tbody>
                     </table>                    
                 </div>
