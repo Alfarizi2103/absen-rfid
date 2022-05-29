@@ -46,7 +46,6 @@
                                 <th>Keterangan</th>
                                 <th>Jam Masuk</th>
                                 <th>Jam Keluar</th>
-                                <th>Total Jam</th>
                             </tr>
                         </thead>
                         <tbody class="data">

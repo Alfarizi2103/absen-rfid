@@ -47,12 +47,12 @@ class UsersController extends Controller
             'nik'  => ['required', 'unique:users'],
             'nama'  => ['required', 'max:32', 'string'],
             'email'   => ['required','unique:users'],
-            'role'  => ['required', 'numeric'],
             'jk'  => ['required', 'string'],
             'password' => 'required|min:6',
             'foto'  => ['image', 'mimes:jpeg,png,gif', 'max:2048']
         ]);
-        $user['role_id'] = $request->role;
+        $user['role_id'] = 2;
+        // $user['role_id'] = $request->role;
         $password = request('password'); // get the value of password field
         // $user = Hash::make($password);
         $user['password'] = Hash::make($password);
@@ -220,11 +220,16 @@ class UsersController extends Controller
     public function updateProfil(Request $request, User $user)
     {
         $request->validate([
-            
+            'nik'  => ['required',],
+           'email'   => ['required'],
+            'jk'  => ['max:32', 'string'],
             'nama' => ['required', 'max:32'],
             'foto' => ['image', 'mimes:jpeg,png,gif', 'max:2048']
         ]);
         $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->jk = $request->jk;
+        $user->nik = $request->nik;
         if ($request->file('foto')) {
             if ($user->foto != 'default.jpg') {
                 File::delete(public_path('storage'.'/'.$user->foto));

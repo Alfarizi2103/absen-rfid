@@ -136,7 +136,7 @@ Kehadiran - {{ config('app.name') }}
                                 <th>Jam Masuk</th>
                                 <th>Jam Keluar</th>
                                 <th>Tanggal</th>
-                                <th>Total Jam</th>
+                                <!-- <th>Total Jam</th> -->
                             </tr>
                         </thead>
                         <tbody>

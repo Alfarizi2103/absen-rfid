@@ -25,7 +25,15 @@ Tambah User - {{ config('app.name') }}
                                     <label class="custom-file-label" for="foto">Ubah Foto</label>
                                 </div>
                             </div>
-                        </div><div class="form-group row">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"><label for="nama" class="float-left col-form-label">Nama</label></div>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ old('nama') }}">
+                                @error('nama') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-2"><label for="no_kartu" class="float-left col-form-label">no_kartu</label></div>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" name="no_kartu" value="{{ old('no_kartu') }}">
@@ -45,23 +53,8 @@ Tambah User - {{ config('app.name') }}
                                 @error('email') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="nama" class="float-left col-form-label">Nama</label></div>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ old('nama') }}">
-                                @error('nama') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="role" class="float-left col-form-label">Sebagai</label></div>
-                            <div class="col-sm-10">
-                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
-                                    <option value="">Pilih</option>
-                                    <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>Pegawai</option>
-                                </select>
-                                @error('role') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
+                        
+                        
                         <div class="form-group row">
                             <div class="col-sm-2"><label for="jk" class="float-left col-form-label">Gender</label></div>
                             <div class="col-sm-10">

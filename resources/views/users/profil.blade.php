@@ -26,25 +26,7 @@ Profil - {{ config('app.name') }}
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="no_kartu" class="col-form-label">no_kartu</label></div>
-                            <div class="col-sm-10">
-                                <input disabled type="text" class="form-control" id="no_kartu" name="no_kartu" value="{{ Auth::user()->no_kartu }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="nik" class="col-form-label">nik</label></div>
-                            <div class="col-sm-10">
-                                <input disabled type="text" class="form-control" id="nik" name="nik" value="{{ Auth::user()->nik }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="email" class="col-form-label">email</label></div>
-                            <div class="col-sm-10">
-                                <input disabled type="text" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
+                          <div class="form-group row">
                             <div class="col-sm-2"><label for="nama" class="col-form-label">Nama</label></div>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ Auth::user()->nama }}">
@@ -52,9 +34,35 @@ Profil - {{ config('app.name') }}
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-2"><label for="jk" class="col-form-label">jk</label></div>
+                            <div class="col-sm-2"><label for="no_kartu" class="col-form-label">no_kartu</label></div>
                             <div class="col-sm-10">
-                                <input disabled type="text" class="form-control" id="jk" name="jk" value="{{ Auth::user()->jk }}">
+                                <input disabled type="text" class="form-control" id="no_kartu" name="no_kartu" value="{{ Auth::user()->no_kartu }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"><label for="nik" class="float-left col-form-label">nik</label></div>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ Auth::user()->nik }}">
+                                @error('nik') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"><label for="email" class="float-right col-form-label">email</label></div>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ Auth::user()->email }}">
+                                @error('email') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-2"><label for="jk" class="float-right col-form-label ">Gender</label></div>
+                            <div class="col-sm-10">
+                                <select class="form-control @error('jk') is-invalid @enderror" name="jk" id="jk" value="{{ Auth::user()->jk }}">
+                                    <option value="">Pilih</option>
+                                    <option value="Pria"  {{ old('jk',Auth::user()->jk) == 'Pria' ? 'selected' : '' }} >Pria</option>
+                                    <option value="Perempuan" {{ old('jk',Auth::user()->jk) == 'Perempuan' ? 'selected' : '' }} >Perempuan</option>
+                                </select>
+                                @error('jk') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <div class="form-group row justify-content-end">

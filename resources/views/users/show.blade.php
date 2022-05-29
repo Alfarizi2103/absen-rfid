@@ -162,7 +162,7 @@ Detail User - {{ config('app.name') }}
                                         <th>Keterangan</th>
                                         <th>Jam Masuk</th>
                                         <th>Jam Keluar</th>
-                                        <th>Total Jam</th>
+                                        <!-- <th>Total Jam</th> -->
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>

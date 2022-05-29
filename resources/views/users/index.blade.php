@@ -52,7 +52,6 @@ Users Management - {{ config('app.name') }}
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>email</th>
                                 <th>Nama</th>
                                 <th>Sebagai</th>
@@ -62,7 +61,7 @@ Users Management - {{ config('app.name') }}
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <th>{{ $rank++ }}</th>
+                                    
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->nama }}</td>
                                     <td>{{ $user->role->role }}</td>
