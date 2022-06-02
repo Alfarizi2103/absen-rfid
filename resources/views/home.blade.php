@@ -3,7 +3,6 @@
     Home - {{ config('app.name') }}
 @endsection
 @section('content')
-    
             @if ($present)
                 <div class="text-center">
                     <p>

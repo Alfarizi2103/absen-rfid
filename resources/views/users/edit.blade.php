@@ -62,11 +62,10 @@ Ubah User - {{ config('app.name') }}
                                     <option value="">Pilih</option>
                                     <option value="1" {{ old('role',$user->role_id) == 1 ? 'selected' : '' }}>Admin</option>
                                     <option value="2" {{ old('role',$user->role_id) == 2 ? 'selected' : '' }}>Pegawai</option>
-                                    <option value="3" {{ old('role',$user->role_id) == 2 ? 'selected' : '' }}>Kepegawaian</option>
                                 </select>
                                 @error('role') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
-</div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-sm-2"><label for="jk" class="float-right col-form-label ">Gender</label></div>
                             <div class="col-sm-10">

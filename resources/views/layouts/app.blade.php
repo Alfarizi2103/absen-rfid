@@ -228,7 +228,22 @@
                 </div>
             </div>
         </div>
-       
+        <div class="container-fluid mt--7">
+            @yield('content')
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="row align-items-center justify-content-xl-between">
+                    <div class="col-xl-6">
+                        <div class="copyright text-center text-xl-left text-muted">
+                            © {{ date('Y')}} <a href="#" class="font-weight-bold ml-1"
+                                target="_blank">Copyright
+                                </a> Theme By <a href="https://www.creative-tim.com"
+                                class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </div>
     <!--   Core   -->
     <script src="{{ url('template_backend/argon') }}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
