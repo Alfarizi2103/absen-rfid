@@ -135,7 +135,7 @@ Detail User - {{ config('app.name') }}
                                     <i class="fas fa-plus"></i>
                                 </button>
                            
-                        <form class="float-right d-inline-block" action="{{ route('kehadiran.excel-user',$user) }}" method="get">
+                        <form class="float-right d-inline-block" action="{{ route('daftar-hadir.excel-pegawai',$user) }}" method="get">
                             <input type="hidden" name="bulan" value="{{ request('bulan',date('Y-m')) }}">
                             <button title="Download" type="submit" class="btn btn-sm btn-success">
                                 <i class="fas fa-download"></i>
@@ -184,7 +184,7 @@ Detail User - {{ config('app.name') }}
                                                 @if($present->jam_keluar)
                                                     <td>{{ date('H:i:s', strtotime($present->jam_keluar)) }}</td>
                                                 @else
-                                                    <td>-</td>
+                
                                                     <td>-</td>
                                                 @endif
                                                 <td>
@@ -236,10 +236,17 @@ Detail User - {{ config('app.name') }}
                             </div>
                         </div>
                         <div class="form-group row" id="jamMasuk">
-                            <label for="jam_masuk" class="col-form-label col-sm-3">Jam Masuk</label>
+                            <label for="ubah_jam_masuk" class="col-form-label col-sm-3">Jam Masuk</label>
                             <div class="col-sm-9">
-                                <input type="time" name="jam_masuk" id="jam_masuk" class="form-control @error('jam_masuk') is-invalid @enderror">
+                                <input type="time" name="jam_masuk" id="ubah_jam_masuk" class="form-control @error('jam_masuk') is-invalid @enderror">
                                 @error('jam_masuk') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row" id="jamKeluar">
+                            <label for="ubah_jam_keluar" class="col-form-label col-sm-3">Jam Keluar</label>
+                            <div class="col-sm-9">
+                                <input type="time" name="jam_keluar" id="ubah_jam_keluar" class="form-control @error('jam_keluar') is-invalid @enderror">
+                                @error('jam_keluar') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>

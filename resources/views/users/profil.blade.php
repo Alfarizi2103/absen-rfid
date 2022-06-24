@@ -17,15 +17,7 @@ Profil - {{ config('app.name') }}
                         <div class="text-center mb-3">
                             <img id="image" src="{{ Storage::url(Auth::user()->foto ) }}" alt="{{ Auth::user()->foto }}" class="img-thumbnail mb-1">
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="foto" class="col-form-label">Foto</label></div>
-                            <div class="col-sm-10">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="foto" name="foto">
-                                    <label class="custom-file-label" for="foto">Ubah Foto</label>
-                                </div>
-                            </div>
-                        </div>
+                        
                           <div class="form-group row">
                             <div class="col-sm-2"><label for="nama" class="col-form-label">Nama</label></div>
                             <div class="col-sm-10">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Detail User - {{ config('app.name') }}
+Pegawai management - {{ config('app.name') }}
 @endsection
 
 
@@ -84,10 +84,15 @@ Detail User - {{ config('app.name') }}
         <div class="card shadow h-100">
             <div class="card-header">
                 <h5 class="m-0 pt-1 font-weight-bold float-left">Kehadiran</h5>
-                <form class="float-right" action="{{ route('kehadiran.excel-users') }}" method="get">
-                    <input type="hidden" name="tanggal" value="{{ request('bulan', date('Y-m-d')) }}">
-                    <button class="btn btn-sm btn-primary" type="submit" title="Download"><i class="fas fa-download"></i></button>
+                
+                <form class="float-right d-inline-block" action="{{ route('daftar-hadir.excel-pegawai-month') }}" method="get">
+                            <input type="hidden" name="bulan" value="{{ request('bulan',date('Y-m')) }}">
+                            <button title="Download" type="submit" class="btn btn-sm btn-success">
+                                <i class="fas fa-download"></i> Bulanan
+                            </button>
                 </form>
+               
+                       
             </div>
             <div class="card-body">
                 <form action="{{ route('daftar-hadir.cari') }}" class="mb-3" method="get">

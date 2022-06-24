@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Exports\PresentExport;
 use App\Exports\UsersPresentExport;
 use App\Exports\UsersPresentExportMonth;
+use App\Exports\PegawaiPresentExportMonth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class PresentsController extends Controller
         $alpha = Present::whereMonth('tanggal',date('m'))->whereYear('tanggal',date('Y'))->whereKeterangan('alpha')->count();
         $rank = $presents->firstItem();
         
-        return view('presents.index', compact('presents','rank','masuk','telat','cuti','alpha'));
+        return view('presents.index', compact('user','presents','rank','masuk','telat','cuti','alpha'));
     }
 
     public function search(Request $request)
@@ -172,8 +173,10 @@ class PresentsController extends Controller
             $data['jam_masuk'] = $request->jam_masuk;
             if (strtotime($data['jam_masuk']) >= strtotime('07:00:00') && strtotime($data['jam_masuk']) <= strtotime('08:30:00')) {
                 $data['keterangan'] = 'Masuk';
-            } else {
+            } else if (strtotime($data['jam_masuk']) > strtotime('08:30:00') && strtotime($data['jam_masuk']) <= strtotime('17:00:00')) {
                 $data['keterangan'] = 'Telat';
+            } else {
+                $data['keterangan'] = 'Alpha';
             }
         }
         Present::create($data);
@@ -191,14 +194,14 @@ class PresentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(User $user)
     {
         $presents = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal',date('m'))->whereYear('tanggal',date('Y'))->orderBy('tanggal','desc')->paginate(6);
         $masuk = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal',date('m'))->whereYear('tanggal',date('Y'))->whereKeterangan('masuk')->count();
         $telat = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal',date('m'))->whereYear('tanggal',date('Y'))->whereKeterangan('telat')->count();
         $cuti = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal',date('m'))->whereYear('tanggal',date('Y'))->whereKeterangan('cuti')->count();
         $alpha = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal',date('m'))->whereYear('tanggal',date('Y'))->whereKeterangan('alpha')->count();
-        return view('presents.show', compact('presents','masuk','telat','cuti','alpha'));
+        return view('presents.show', compact('user','presents','masuk','telat','cuti','alpha'));
     }
 
     /**
@@ -247,4 +250,15 @@ class PresentsController extends Controller
     {
         return Excel::download(new UsersPresentExport($request->tanggal), 'kehadiran-'.$request->tanggal.'.xlsx');
     }
+
+    public function excelpegawaiMonth(Request $request, User $user)
+    {
+        return Excel::download(new PegawaiPresentExportMonth($request->bulan), 'kehadiran-'.$request->bulan.'.xlsx');
+    }
+
+    public function excelPegawai(Request $request, User $user)
+    {
+        return Excel::download(new PresentExport($user->id, $request->bulan), 'kehadiran-'.$user->email.'-'.$request->bulan.'.xlsx');
+    }
+
 }

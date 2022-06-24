@@ -94,8 +94,8 @@
                             <footer class="py-5">
             <div class="container">
                 <div class="copyright text-center">
-                    © {{ date('Y')}} <a href="#" class="font-weight-bold ml-1" target="_blank">Copyright</a> Theme By <a href="https://www.creative-tim.com"
-                        class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                   <a href="#" class="font-weight-bold ml-1" target="_blank"></a>  <a href="https://www.creative-tim.com"
+                        class="font-weight-bold ml-1" target="_blank"></a>
                 </div>
             </div>
         </footer>

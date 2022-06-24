@@ -66,6 +66,8 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function(){
 
         Route::get('/daftar-hadir', 'App\Http\Controllers\PresentsController@show')->name('daftar-hadir');
         Route::get('/daftar-hadir/cari', 'App\Http\Controllers\PresentsController@cariDaftarHadir')->name('daftar-hadir.cari');
+        Route::get('/daftar-hadir/excel-pegawai-month', 'App\Http\Controllers\PresentsController@excelpegawaiMonth')->name('daftar-hadir.excel-pegawai-month');
+        Route::get('/daftar-hadir/excel-pegawai', 'App\Http\Controllers\PresentsController@excelPegawai')->name('daftar-hadir.excel-pegawai');
     });
 
     Route::group(['middleware' => ['auth','roles:admin,pegawai,kepegawaian']], function() {

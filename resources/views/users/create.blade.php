@@ -17,15 +17,7 @@ Tambah User - {{ config('app.name') }}
                         <div class="text-center mb-3">
                             <img id="image" src="{{ Storage::url('default.jpg') }}" alt="{{ Storage::url('default.jpg') }}" class="img-thumbnail mb-1">
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2"><label for="foto" class="float-left col-form-label">Foto</label></div>
-                            <div class="col-sm-10">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="foto" name="foto">
-                                    <label class="custom-file-label" for="foto">Ubah Foto</label>
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="form-group row">
                             <div class="col-sm-2"><label for="nama" class="float-left col-form-label">Nama</label></div>
                             <div class="col-sm-10">

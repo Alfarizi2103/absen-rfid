@@ -1,6 +1,8 @@
 <table>
     <thead>
         <tr>
+            <th>email</th>
+            <th>Nama</th>
             <th>Tanggal</th>
             <th>Keterangan</th>
             <th>Jam Masuk</th>
@@ -11,6 +13,8 @@
     <tbody>
         @foreach ($presents as $present)
             <tr>
+                <td>{{ $present->user->email }}</td>
+                <td>{{ $present->user->nama }}</td>
                 <td>{{ date('d/m/Y', strtotime($present->tanggal)) }}</td>
                 <td>{{ $present->keterangan }}</td>
                 @if ($present->jam_masuk)
@@ -37,7 +41,7 @@
                 @endif
             </tr>
         @endforeach
-        <tr>
-        </tr>
+        
+        
     </tbody>
 </table>
